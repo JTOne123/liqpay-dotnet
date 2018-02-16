@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LiqPaySDK.Dto;
 using System.Threading.Tasks;
 
 namespace LiqPaySDK
 {
-    public interface ILiqPay
+    public interface ILiqPayClient
     {
-        Task<Dictionary<string, object>> RequestAsync(string path, Dictionary<string, string> queryParams);
+        Task<LiqPayResponse> RequestAsync(string path, LiqPayRequest requestParams);
 
         /**
          * Liq and Buy
@@ -19,6 +18,6 @@ namespace LiqPaySDK
          * data - function result base64_encode( $json_string )
          * signature - function result base64_encode( sha1( $private_key . $data . $private_key ) )
          */
-        string CNBForm(Dictionary<string, string> queryParams);
+        string CNBForm(LiqPayRequest requestParams);
     }
 }
