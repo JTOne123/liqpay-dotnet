@@ -37,7 +37,7 @@ namespace LiqPaySDK.Tests
             {
                 Language = LiqPayRequestLanguage.EN,
                 Amount = 1.5,
-                Currency = LiqPayCurrency.USD,
+                Currency = LiqPayCurrency.USD.GetAttributeOfType<EnumMemberAttribute>().Value,
                 Description = "Description",
                 IsSandbox = true
             };
@@ -65,7 +65,7 @@ namespace LiqPaySDK.Tests
             var cnbParams = CreateDefaultTestRequest();
             lp.CheckCnbParams(cnbParams);
             Assert.AreEqual("en", cnbParams.Language.Value.GetAttributeOfType<EnumMemberAttribute>().Value);
-            Assert.AreEqual("USD", cnbParams.Currency.GetAttributeOfType<EnumMemberAttribute>().Value);
+            Assert.AreEqual("USD", cnbParams.Currency);
             Assert.AreEqual("1.5", cnbParams.Amount.ToString());
             Assert.AreEqual("Description", cnbParams.Description);
         }
@@ -121,7 +121,7 @@ namespace LiqPaySDK.Tests
             {
                 Email = "client-email@gmail.com",
                 Amount = 200,
-                Currency = LiqPayCurrency.USD,
+                Currency = LiqPayCurrency.USD.GetAttributeOfType<EnumMemberAttribute>().Value,
                 OrderId = "order_id_1",
                 Goods = new List<LiqPayRequestGoods> {
                     new LiqPayRequestGoods {

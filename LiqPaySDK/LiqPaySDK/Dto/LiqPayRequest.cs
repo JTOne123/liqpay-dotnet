@@ -18,8 +18,7 @@ namespace LiqPaySDK.Dto
         [JsonProperty("amount")]
         public double Amount { get; set; }
         [JsonProperty("currency")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public LiqPayCurrency Currency { get; set; }
+        public string Currency { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("sandbox")]

@@ -15,6 +15,8 @@ namespace LiqPaySDK.Dto.Enums
         [EnumMember(Value = "BYN")]
         BYN,
         [EnumMember(Value = "KZT")]
-        KZT
+        KZT,
+        [EnumMember(Value = "GBP")]
+        GBP
     }
 }

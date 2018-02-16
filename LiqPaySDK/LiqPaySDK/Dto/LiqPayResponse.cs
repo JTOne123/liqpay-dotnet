@@ -6,14 +6,15 @@ namespace LiqPaySDK.Dto
 {
     public class LiqPayResponse
     {
+        [JsonProperty("result")]
+        public string Result { get; set; }
         [JsonProperty("action")]
         [JsonConverter(typeof(StringEnumConverter))]
         public LiqPayResponseAction Action { get; set; }
         [JsonProperty("amount")]
         public double Amount { get; set; }
         [JsonProperty("currency")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public LiqPayCurrency Currency { get; set; }
+        public string Currency { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("href")]
@@ -31,5 +32,11 @@ namespace LiqPaySDK.Dto
         public LiqPayResponseStatus Status { get; set; }
         [JsonProperty("token")]
         public string Token { get; set; }
+        [JsonProperty("code")]
+        public string Code { get; set; }
+        [JsonProperty("err_code")]
+        public string ErrorCode { get; set; }
+        [JsonProperty("err_description")]
+        public string ErrorDescription { get; set; }
     }
 }
