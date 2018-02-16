@@ -1,4 +1,4 @@
-liqpay.ua API SDK for .Net [.Net Standard 2.0]
+liqpay.ua API SDK for .Net/C# [.Net Standard 2.0]
 ===========================
 
 API Documentation [in Russian](https://www.liqpay.ua/documentation/ru) and [in English](https://www.liqpay.ua/documentation/en)
@@ -9,7 +9,7 @@ Usage
 
 ```csharp
 // send invoce by email
-var invoiceParams = new LiqPayRequest
+var invoiceRequest = new LiqPayRequest
 {
     Email = "email@example.com",
     Amount = 200,
@@ -29,5 +29,5 @@ var invoiceParams = new LiqPayRequest
 
 var liqPayClient = new LiqPayClient("publicApiKey", "priveteApiKEy");
 //liqPayClient.IsCnbSandbox = true;
-var response = await liqPayClient.RequestAsync("request", invoiceParams);
+var response = await liqPayClient.RequestAsync("request", invoiceRequest);
 ```

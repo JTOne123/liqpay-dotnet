@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Paul Datsiuk</Authors>
+    <Company>Printslon.com</Company>
+    <PackageProjectUrl>https://github.com/JTOne123/liqpay-dotnet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/JTOne123/liqpay-dotnet/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>liqpay, pay, payment, masterpass, bank card, privat24, privatbank</PackageTags>
+    <RepositoryUrl>https://github.com/JTOne123/liqpay-dotnet</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <Product>LiqPay SDK</Product>
+    <Description>Non-official C# wrapper for LiqiPay API (based on Java implementation)</Description>
+    <PackageIconUrl>https://www.liqpay.ua/favicon.ico</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
