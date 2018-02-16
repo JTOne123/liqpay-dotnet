@@ -3,8 +3,12 @@ liqpay.ua API SDK for .Net/C# [.Net Standard 2.0]
 
 API Documentation [in Russian](https://www.liqpay.ua/documentation/ru) and [in English](https://www.liqpay.ua/documentation/en)
 
+
 Nuget
+----------------------
+
 [![NuGet][lp-img]][lp-link] 
+
 
 Usage
 ----------------------
