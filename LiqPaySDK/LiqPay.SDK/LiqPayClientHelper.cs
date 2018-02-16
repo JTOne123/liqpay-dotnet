@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LiqPaySDK
+namespace LiqPay.SDK
 {
     public class LiqPayClientHelper
     {

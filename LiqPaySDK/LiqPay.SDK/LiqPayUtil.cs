@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace LiqPaySDK
+namespace LiqPay.SDK
 {
     public static class LiqPayUtil
     {

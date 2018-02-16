@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LiqPaySDK\LiqPaySDK.csproj" />
+    <ProjectReference Include="..\LiqPay.SDK\LiqPay.SDK.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
-﻿using LiqPaySDK.Dto;
-using LiqPaySDK.Dto.Enums;
+﻿using LiqPay.SDK.Dto;
+using LiqPay.SDK.Dto.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace LiqPaySDK
+namespace LiqPay.SDK
 {
     public class LiqPayClient : ILiqPayClient
     {

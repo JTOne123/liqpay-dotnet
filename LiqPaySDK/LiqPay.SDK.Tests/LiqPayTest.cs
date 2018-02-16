@@ -1,12 +1,12 @@
-﻿using LiqPaySDK.Dto;
-using LiqPaySDK.Dto.Enums;
+﻿using LiqPay.SDK.Dto;
+using LiqPay.SDK.Dto.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace LiqPaySDK.Tests
+namespace LiqPay.SDK.Tests
 {
     [TestClass]
     public class LiqPayTest

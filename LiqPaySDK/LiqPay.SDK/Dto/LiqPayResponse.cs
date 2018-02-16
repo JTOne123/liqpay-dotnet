@@ -1,8 +1,8 @@
-﻿using LiqPaySDK.Dto.Enums;
+﻿using LiqPay.SDK.Dto.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace LiqPaySDK.Dto
+namespace LiqPay.SDK.Dto
 {
     public class LiqPayResponse
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 
-namespace LiqPaySDK.Tests
+namespace LiqPay.SDK.Tests
 {
     [TestClass]
     public class LiqPayUtilTest

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace LiqPaySDK.Dto
+namespace LiqPay.SDK.Dto
 {
     public class LiqPayRequestGoods
     {

@@ -1,6 +1,6 @@
-﻿using LiqPaySDK.Dto.Enums;
+﻿using LiqPay.SDK.Dto.Enums;
 
-namespace LiqPaySDK
+namespace LiqPay.SDK
 {
     public static class LiqPayConsts
     {

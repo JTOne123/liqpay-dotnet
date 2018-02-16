@@ -1,7 +1,7 @@
-﻿using LiqPaySDK.Dto;
+﻿using LiqPay.SDK.Dto;
 using System.Threading.Tasks;
 
-namespace LiqPaySDK
+namespace LiqPay.SDK
 {
     public interface ILiqPayClient
     {

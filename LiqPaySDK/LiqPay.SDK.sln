@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiqPaySDK", "LiqPaySDK\LiqPaySDK.csproj", "{0D0A7AAA-FD11-429E-B41B-1F5041F774E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiqPay.SDK", "LiqPay.SDK\LiqPay.SDK.csproj", "{0D0A7AAA-FD11-429E-B41B-1F5041F774E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiqPaySDK.Tests", "LiqPaySDK.Tests\LiqPaySDK.Tests.csproj", "{CB5170E0-7B7D-4CD6-9489-96410C58F496}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiqPay.SDK.Tests", "LiqPay.SDK.Tests\LiqPay.SDK.Tests.csproj", "{CB5170E0-7B7D-4CD6-9489-96410C58F496}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

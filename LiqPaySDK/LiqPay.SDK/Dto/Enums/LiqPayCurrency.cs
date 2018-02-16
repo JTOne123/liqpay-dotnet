@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace LiqPaySDK.Dto.Enums
+namespace LiqPay.SDK.Dto.Enums
 {
     public enum LiqPayCurrency
     {

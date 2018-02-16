@@ -1,10 +1,10 @@
-﻿using LiqPaySDK.Dto.Enums;
+﻿using LiqPay.SDK.Dto.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 
-namespace LiqPaySDK.Dto
+namespace LiqPay.SDK.Dto
 {
     public class LiqPayRequest
     {

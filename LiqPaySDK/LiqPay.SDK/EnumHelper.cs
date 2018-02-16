@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LiqPaySDK
+namespace LiqPay.SDK
 {
     public static class EnumHelper
     {
