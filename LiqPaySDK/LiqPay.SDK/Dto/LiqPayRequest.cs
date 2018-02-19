@@ -12,6 +12,17 @@ namespace LiqPay.SDK.Dto
         public int Version { get; set; }
         [JsonProperty("public_key")]
         public string PublicKey { get; set; }
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
+        [JsonProperty("card_token")]
+        public string CardToken { get; set; }
+        [JsonProperty("ip")]
+        public string IP { get; set; }
+        [JsonProperty("prepare")]
+        public string Prepare { get; set; }
+        [JsonProperty("paytypes")]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public LiqPayRequestPayType? PayTypes { get; set; }
         [JsonProperty("action")]
         [JsonConverter(typeof(StringEnumConverter))]
         public LiqPayRequestAction? Action { get; set; }

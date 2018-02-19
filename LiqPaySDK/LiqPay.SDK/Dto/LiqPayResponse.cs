@@ -38,5 +38,7 @@ namespace LiqPay.SDK.Dto
         public string ErrorCode { get; set; }
         [JsonProperty("err_description")]
         public string ErrorDescription { get; set; }
+        [JsonProperty("invoice_id")]
+        public int? InvoiceId { get; set; }
     }
 }
