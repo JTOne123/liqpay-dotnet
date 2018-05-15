@@ -19,6 +19,14 @@ namespace LiqPay.SDK.Dto.Enums
         [EnumMember(Value = "paytrack")]
         PayTrack,
         [EnumMember(Value = "refund")]
-        Refund
+        Refund,
+        [EnumMember(Value = "hold")]
+        Hold,
+        [EnumMember(Value = "subscribe")]
+        Subscribe,
+        [EnumMember(Value = "paydonate")]
+        Paydonate,
+        [EnumMember(Value = "auth")]
+        Auth
     }
 }
