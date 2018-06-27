@@ -1,10 +1,11 @@
-﻿using LiqPay.SDK.Dto;
+using LiqPay.SDK.Dto;
 using LiqPay.SDK.Dto.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.Serialization;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace LiqPay.SDK
@@ -97,16 +98,18 @@ namespace LiqPay.SDK
 
         private string RenderHtmlForm(string data, LiqPayRequestLanguage language, string signature)
         {
-            String form = "";
-            form += "<form method=\"post\" action=\"" + LiqPayConsts.LiqpayApiCheckoutUrl + "\" accept-charset=\"utf-8\">\n";
-            form += "<input type=\"hidden\" name=\"data\" value=\"" + data + "\" />\n";
-            form += "<input type=\"hidden\" name=\"signature\" value=\"" + signature + "\" />\n";
+            var form = new StringBuilder(;
+            form.Append($"<form method=\"post\" action=\"{ LiqPayConsts.LiqpayApiCheckoutUrl }\" accept-charset=\"utf-8\">\n");
+            form.Append($"<input type =\"hidden\" name=\"data\" value=\"{ data }\" />\n");
+            form.Append($"<input type =\"hidden\" name=\"signature\" value=\"{ signature }\" />\n");
+
             if (WithRenderPayButton)
             {
-                form += "<input type=\"image\" src=\"//static.liqpay.ua/buttons/p1" + language.GetAttributeOfType<EnumMemberAttribute>().Value + ".radius.png\" name=\"btn_text\" />\n";
+                form.Append($"<input type=\"image\" src=\"//static.liqpay.ua/buttons/p1{language.GetAttributeOfType<EnumMemberAttribute>().Value}.radius.png\" name=\"btn_text\" />\n");
             }
-            form += "</form>\n";
-            return form;
+            form.Append("</form>\n");
+
+            return form.ToString();
         }
 
         public void CheckCnbParams(LiqPayRequest requestParams)
