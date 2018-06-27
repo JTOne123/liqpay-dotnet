@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -11,7 +11,7 @@ namespace LiqPay.SDK
     {
         public static async Task<string> PostAsync(string url, Dictionary<string, string> data, WebProxy proxy = null)
         {
-            var urlParameters = "";
+            string urlParameters = null;
 
             foreach (var item in data)
             {
@@ -19,7 +19,8 @@ namespace LiqPay.SDK
                 byte[] bytes = Encoding.Default.GetBytes(queryValue);
                 var utf8QueryValue = Encoding.UTF8.GetString(bytes);
 
-                urlParameters += item.Key + "=" + utf8QueryValue + "&";
+
+                urlParameters = $"{item.Key}={utf8QueryValue}&";
             }
 
             var httpClientHandler = new HttpClientHandler()
