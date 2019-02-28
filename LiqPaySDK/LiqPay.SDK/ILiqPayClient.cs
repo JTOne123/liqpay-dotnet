@@ -1,4 +1,5 @@
 ﻿using LiqPay.SDK.Dto;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LiqPay.SDK
@@ -19,5 +20,7 @@ namespace LiqPay.SDK
          * signature - function result base64_encode( sha1( $private_key . $data . $private_key ) )
          */
         string CNBForm(LiqPayRequest requestParams);
+
+        KeyValuePair<string, string> GenerateDataAndSignature(LiqPayRequest requestParams);
     }
 }
