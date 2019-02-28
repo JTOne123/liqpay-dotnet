@@ -124,5 +124,16 @@ namespace LiqPay.SDK
         public string StrToSign(string str) => str.SHA1Hash().ToBase64String();
 
         public string CreateSignature(string base64EncodedData) => StrToSign(_privateKey + base64EncodedData + _privateKey);
+
+        public KeyValuePair<string, string> GenerateDataAndSignature(LiqPayRequest requestParams)
+        {
+            CheckCnbParams(requestParams);
+
+            var jsonString = JsonConvert.SerializeObject(WithSandboxParam(WithBasicApiParams(requestParams)), _jsonSettings);
+            var data = jsonString.ToBase64String();
+            var signature = CreateSignature(data);
+
+            return new KeyValuePair<string, string>(data, signature);
+        }
     }
 }
