@@ -1,6 +1,7 @@
 using LiqPay.SDK.Dto;
 using LiqPay.SDK.Dto.Enums;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -31,17 +32,10 @@ namespace LiqPay.SDK
             CheckRequired();
         }
 
-        public LiqPayClient(String publicKey, String privateKey, WebProxy proxy)
+        public LiqPayClient(string publicKey, string privateKey, WebProxy proxy)
+            : this(publicKey, privateKey)
         {
-            _publicKey = publicKey;
-            _privateKey = privateKey;
-
             Proxy = proxy;
-
-            _jsonSettings = new JsonSerializerSettings();
-            _jsonSettings.NullValueHandling = NullValueHandling.Ignore;
-
-            CheckRequired();
         }
 
         private void CheckRequired()
@@ -63,13 +57,26 @@ namespace LiqPay.SDK
 
         public Dictionary<string, string> PrepareRequestData(LiqPayRequest requestParams)
         {
-            var jsonString = JsonConvert.SerializeObject(WithBasicApiParams(requestParams), _jsonSettings);
+            LiqPayRequest withApiParams = WithBasicApiParams(requestParams);
+            string jsonString = SerializeToJson(withApiParams);
             string data = jsonString.ToBase64String();
 
             var apiData = new Dictionary<string, string>();
             apiData.Add("data", data);
             apiData.Add("signature", CreateSignature(data));
             return apiData;
+        }
+
+        private string SerializeToJson(LiqPayRequest requestParams)
+        {
+            var json = JObject.FromObject(requestParams, new JsonSerializer { NullValueHandling = _jsonSettings.NullValueHandling });
+            foreach (var key in requestParams.OtherParams.Keys)
+            {
+                json.Add(key, requestParams.OtherParams[key]);
+            }
+
+            var jsonString = json.ToString();
+            return jsonString;
         }
 
         public LiqPayRequest WithBasicApiParams(LiqPayRequest requestParams)
@@ -90,7 +97,7 @@ namespace LiqPay.SDK
         {
             CheckCnbParams(requestParams);
 
-            var jsonString = JsonConvert.SerializeObject(WithSandboxParam(WithBasicApiParams(requestParams)), _jsonSettings);
+            var jsonString = SerializeToJson(WithSandboxParam(WithBasicApiParams(requestParams)));
             var data = jsonString.ToBase64String();
             var signature = CreateSignature(data);
             return RenderHtmlForm(data, requestParams.Language ?? LiqPayConsts.DefaultLanguage, signature);
@@ -98,10 +105,10 @@ namespace LiqPay.SDK
 
         private string RenderHtmlForm(string data, LiqPayRequestLanguage language, string signature)
         {
-            var form = new StringBuilder(;
+            var form = new StringBuilder();
             form.Append($"<form method=\"post\" action=\"{ LiqPayConsts.LiqpayApiCheckoutUrl }\" accept-charset=\"utf-8\">\n");
-            form.Append($"<input type =\"hidden\" name=\"data\" value=\"{ data }\" />\n");
-            form.Append($"<input type =\"hidden\" name=\"signature\" value=\"{ signature }\" />\n");
+            form.Append($"<input type=\"hidden\" name=\"data\" value=\"{ data }\" />\n");
+            form.Append($"<input type=\"hidden\" name=\"signature\" value=\"{ signature }\" />\n");
 
             if (WithRenderPayButton)
             {
@@ -129,7 +136,7 @@ namespace LiqPay.SDK
         {
             CheckCnbParams(requestParams);
 
-            var jsonString = JsonConvert.SerializeObject(WithSandboxParam(WithBasicApiParams(requestParams)), _jsonSettings);
+            var jsonString = SerializeToJson(WithSandboxParam(WithBasicApiParams(requestParams)));
             var data = jsonString.ToBase64String();
             var signature = CreateSignature(data);
 

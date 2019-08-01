@@ -2,8 +2,10 @@
 using LiqPay.SDK.Dto.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace LiqPay.SDK.Tests
@@ -12,14 +14,14 @@ namespace LiqPay.SDK.Tests
     public class LiqPayTest
     {
         static readonly string CNB_FORM_WITHOUT_SANDBOX = "<form method=\"post\" action=\"https://www.liqpay.ua/api/3/checkout\" accept-charset=\"utf-8\">\n" +
-            "<input type=\"hidden\" name=\"data\" value=\"eyJ2ZXJzaW9uIjozLCJwdWJsaWNfa2V5IjoicHVibGljS2V5IiwiYW1vdW50IjoxLjUsImN1cnJlbmN5IjoiVVNEIiwiZGVzY3JpcHRpb24iOiJEZXNjcmlwdGlvbiIsImxhbmd1YWdlIjoiZW4ifQ==\" />\n" +
-            "<input type=\"hidden\" name=\"signature\" value=\"gCMDMPVUIu6f2aH7T1OIqzwb7BM=\" />\n" +
+            "<input type=\"hidden\" name=\"data\" value=\"ew0KICAidmVyc2lvbiI6IDMsDQogICJwdWJsaWNfa2V5IjogInB1YmxpY0tleSIsDQogICJhbW91bnQiOiAxLjUsDQogICJjdXJyZW5jeSI6ICJVU0QiLA0KICAiZGVzY3JpcHRpb24iOiAiRGVzY3JpcHRpb24iLA0KICAibGFuZ3VhZ2UiOiAiZW4iDQp9\" />\n" +
+            "<input type=\"hidden\" name=\"signature\" value=\"iKN9Hh4HWJGyCMefiU0wDPGavYg=\" />\n" +
             "<input type=\"image\" src=\"//static.liqpay.ua/buttons/p1en.radius.png\" name=\"btn_text\" />\n" +
             "</form>\n";
 
         static readonly string CNB_FORM_WITH_SANDBOX = "<form method=\"post\" action=\"https://www.liqpay.ua/api/3/checkout\" accept-charset=\"utf-8\">\n" +
-            "<input type=\"hidden\" name=\"data\" value=\"eyJ2ZXJzaW9uIjozLCJwdWJsaWNfa2V5IjoicHVibGljS2V5IiwiYW1vdW50IjoxLjUsImN1cnJlbmN5IjoiVVNEIiwiZGVzY3JpcHRpb24iOiJEZXNjcmlwdGlvbiIsInNhbmRib3giOiIxIiwibGFuZ3VhZ2UiOiJlbiJ9\" />\n" +
-            "<input type=\"hidden\" name=\"signature\" value=\"aA2nLvqUhbXQ7a0W3WQj0bdmcSc=\" />\n" +
+            "<input type=\"hidden\" name=\"data\" value=\"ew0KICAidmVyc2lvbiI6IDMsDQogICJwdWJsaWNfa2V5IjogInB1YmxpY0tleSIsDQogICJhbW91bnQiOiAxLjUsDQogICJjdXJyZW5jeSI6ICJVU0QiLA0KICAiZGVzY3JpcHRpb24iOiAiRGVzY3JpcHRpb24iLA0KICAic2FuZGJveCI6ICIxIiwNCiAgImxhbmd1YWdlIjogImVuIg0KfQ==\" />\n" +
+            "<input type=\"hidden\" name=\"signature\" value=\"hZyFKilGTSAvRczVgGPejFkBKbg=\" />\n" +
             "<input type=\"image\" src=\"//static.liqpay.ua/buttons/p1en.radius.png\" name=\"btn_text\" />\n" +
             "</form>\n";
 
@@ -60,13 +62,24 @@ namespace LiqPay.SDK.Tests
         }
 
         [TestMethod]
+        public void LiqPayTest_OtherParamsSerializedToJsonObjectDirectly()
+        {
+            var queryParams = CreateDefaultTestRequest();
+            queryParams.OtherParams["test"] = "value";
+            var requestData = lp.PrepareRequestData(queryParams);
+            var json = JObject.Parse(requestData["data"].DecodeBase64());
+            Assert.IsNotNull(json.GetValue("test"));
+            Assert.AreEqual(json.GetValue("test").Value<string>(), "value");
+        }
+
+        [TestMethod]
         public void LiqPayTest_CnbParams()
         {
             var cnbParams = CreateDefaultTestRequest();
             lp.CheckCnbParams(cnbParams);
             Assert.AreEqual("en", cnbParams.Language.Value.GetAttributeOfType<EnumMemberAttribute>().Value);
             Assert.AreEqual("USD", cnbParams.Currency);
-            Assert.AreEqual("1.5", cnbParams.Amount.ToString());
+            Assert.AreEqual("1.5", cnbParams.Amount.ToString(CultureInfo.InvariantCulture));
             Assert.AreEqual("Description", cnbParams.Description);
         }
 
@@ -95,7 +108,7 @@ namespace LiqPay.SDK.Tests
             var fullParams = lp.WithBasicApiParams(cnbParams);
             Assert.AreEqual("publicKey", fullParams.PublicKey);
             Assert.AreEqual("3", fullParams.Version.ToString());
-            Assert.AreEqual("1.5", fullParams.Amount.ToString());
+            Assert.AreEqual("1.5", fullParams.Amount.ToString(CultureInfo.InvariantCulture));
         }
 
         [TestMethod]
@@ -134,8 +147,8 @@ namespace LiqPay.SDK.Tests
             };
 
             var generated = lp.PrepareRequestData(invoiceParams);
-            Assert.AreEqual("ep8wax2+ELYPDoW8U9Vg3hG8IYY=", generated["signature"]);
-            Assert.AreEqual("eyJ2ZXJzaW9uIjozLCJwdWJsaWNfa2V5IjoicHVibGljS2V5IiwiYW1vdW50IjoyMDAuMCwiY3VycmVuY3kiOiJVU0QiLCJvcmRlcl9pZCI6Im9yZGVyX2lkXzEiLCJlbWFpbCI6ImNsaWVudC1lbWFpbEBnbWFpbC5jb20iLCJnb29kcyI6W3siYW1vdW50IjoxMDAuMCwiY291bnQiOjIsInVuaXQiOiJ1bi4iLCJuYW1lIjoicGhvbmUifV19", generated["data"]);
+            Assert.AreEqual("hrXopoo2eyDAtknnZn3Ez4VEka0=", generated["signature"]);
+            Assert.AreEqual("ew0KICAidmVyc2lvbiI6IDMsDQogICJwdWJsaWNfa2V5IjogInB1YmxpY0tleSIsDQogICJhbW91bnQiOiAyMDAuMCwNCiAgImN1cnJlbmN5IjogIlVTRCIsDQogICJvcmRlcl9pZCI6ICJvcmRlcl9pZF8xIiwNCiAgImVtYWlsIjogImNsaWVudC1lbWFpbEBnbWFpbC5jb20iLA0KICAiZ29vZHMiOiBbDQogICAgew0KICAgICAgImFtb3VudCI6IDEwMC4wLA0KICAgICAgImNvdW50IjogMiwNCiAgICAgICJ1bml0IjogInVuLiIsDQogICAgICAibmFtZSI6ICJwaG9uZSINCiAgICB9DQogIF0NCn0=", generated["data"]);
         }
     }
 }

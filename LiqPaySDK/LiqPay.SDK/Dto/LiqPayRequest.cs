@@ -60,9 +60,26 @@ namespace LiqPay.SDK.Dto
         [JsonProperty("language")]
         [JsonConverter(typeof(StringEnumConverter))]
         public LiqPayRequestLanguage? Language { get; set; }
+        [JsonProperty("subscribe_periodicity")]
+        public string SubscribePeriodicity { get; set; }
+        public string Subscribe { get; set; }
+
+        [JsonIgnore]
+        public bool IsSubscribe
+        {
+            get { return Subscribe == "1"; }
+            set { Subscribe = value ? "1": "0"; }
+        }
+
+        [JsonProperty("subscribe_date_start")]
+        public string SubscribeDateStart { get; set; }
+
         [JsonProperty("result_url")]
         public string ResultUrl { get; set; }
         [JsonProperty("server_url")]
         public string ServerUrl { get; set; }
+
+        [JsonIgnore]
+        public IDictionary<string, string> OtherParams { get; set; } = new Dictionary<string, string>();
     }
 }
