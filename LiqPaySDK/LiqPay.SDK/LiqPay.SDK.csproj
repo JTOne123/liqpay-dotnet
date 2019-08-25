@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Authors>Paul Datsiuk</Authors>
+    <Authors>Pavlo Datsiuk</Authors>
     <Company>Printslon.com</Company>
     <PackageProjectUrl>https://github.com/JTOne123/liqpay-dotnet</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/JTOne123/liqpay-dotnet/blob/master/LICENSE</PackageLicenseUrl>
@@ -14,8 +14,9 @@
     <Product>LiqPay SDK</Product>
     <Description>Non-official C# wrapper for LiqPay API (based on Java implementation)</Description>
     <PackageIconUrl>https://www.liqpay.ua/favicon.ico</PackageIconUrl>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <PackageId>LiqPay</PackageId>
+    <Copyright>https://github.com/JTOne123/liqpay-dotnet/blob/master/LICENSE</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
