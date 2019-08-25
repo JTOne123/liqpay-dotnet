@@ -12,7 +12,13 @@ namespace LiqPay.SDK.Dto.Enums
         Sandbox,
         [EnumMember(Value = "success")]
         Success,
+        [EnumMember(Value = "subscribed")]
+        Subscribed,
+        [EnumMember(Value = "unsubscribed")]
+        Unsubscribed,
         [EnumMember(Value = "invoice_wait")]
-        InvoiceWait
+        InvoiceWait,
+        [EnumMember(Value = "try_again")]
+        TryAgain
     }
 }

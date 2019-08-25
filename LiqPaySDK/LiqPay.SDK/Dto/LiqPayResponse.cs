@@ -1,6 +1,7 @@
 ﻿using LiqPay.SDK.Dto.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Collections.Generic;
 
 namespace LiqPay.SDK.Dto
 {
@@ -23,6 +24,10 @@ namespace LiqPay.SDK.Dto
         public int Id { get; set; }
         [JsonProperty("order_id")]
         public string OrderId { get; set; }
+        [JsonProperty("payment_id")]
+        public long PaymentId { get; set; }
+        [JsonProperty("transaction_id")]
+        public long TransactionId { get; set; }
         [JsonProperty("receiver_type")]
         public string ReceiverType { get; set; }
         [JsonProperty("receiver_value")]
