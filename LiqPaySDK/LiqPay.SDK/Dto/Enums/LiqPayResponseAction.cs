@@ -17,6 +17,8 @@ namespace LiqPay.SDK.Dto.Enums
         [EnumMember(Value = "auth")]
         Auth,
         [EnumMember(Value = "regular")]
-        Regular
+        Regular,
+        [EnumMember(Value = "paycash")]
+        Paycash
     }
 }
