@@ -1,4 +1,5 @@
-﻿using LiqPay.SDK.Dto.Enums;
+﻿using System;
+using LiqPay.SDK.Dto.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Collections.Generic;
@@ -45,5 +46,14 @@ namespace LiqPay.SDK.Dto
         public string ErrorDescription { get; set; }
         [JsonProperty("invoice_id")]
         public int? InvoiceId { get; set; }
+        [JsonProperty("refund_amount")]
+        public double RefundAmount { get; set; }
+        [JsonProperty("refund_date_last")]
+        [JsonConverter(typeof(LiqMillisecondEpochConverter))]
+        public DateTime? RefundDateLast { get; set; }
+        [JsonProperty("create_date")]
+        [JsonConverter(typeof(LiqMillisecondEpochConverter))]
+        public DateTime CreateDate { get; set; }
+        
     }
 }
