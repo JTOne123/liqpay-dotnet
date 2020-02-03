@@ -19,6 +19,10 @@ namespace LiqPay.SDK.Dto.Enums
         [EnumMember(Value = "invoice_wait")]
         InvoiceWait,
         [EnumMember(Value = "try_again")]
-        TryAgain
+        TryAgain,
+        [EnumMember(Value = "reversed")]
+        Reversed,
+        [EnumMember(Value = "cash_wait")]
+        CashWait,
     }
 }
