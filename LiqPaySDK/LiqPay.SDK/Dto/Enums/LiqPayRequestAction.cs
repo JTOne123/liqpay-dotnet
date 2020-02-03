@@ -27,6 +27,8 @@ namespace LiqPay.SDK.Dto.Enums
         [EnumMember(Value = "paydonate")]
         Paydonate,
         [EnumMember(Value = "auth")]
-        Auth
+        Auth,
+        [EnumMember(Value = "status")]
+        Status,
     }
 }
