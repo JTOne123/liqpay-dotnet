@@ -7,21 +7,35 @@ jobs:
 
     runs-on: windows-latest
     
+    env: 
+      VERSION: $(date +%Y.%m.%d%H.%M%S)
+    
     steps:
+    
     - uses: actions/checkout@v1
+    
+    - name: Varibles
+      run: echo "Version is > $(VERSION)"
+      shell: bash
+      
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
+    
     - name: Build with dotnet
       run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release -p:Version=$(date +%Y.%m.%d%H.%M%S)
       shell: bash
+    
     - name: Pack
       run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release
+    
     - name: Install NuGet client
       uses: warrenbuckley/Setup-Nuget@v1
+    
     - name: Add private GitHub registry
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
+    
     - name: Publish Nuget
       run: dotnet nuget push "LiqPaySDK/LiqPay.SDK/bin/Release/LiqPay.$VERSION.nupkg" --source "github"
       shell: bash
