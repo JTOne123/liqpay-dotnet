@@ -7,16 +7,9 @@ jobs:
 
     runs-on: windows-latest
     
-    env: 
-      VERSION: "1.0.0.0"
-    
     steps:
     
     - uses: actions/checkout@v1
-    
-    - name: Varibles
-      run: echo "Version is > $VERSION"
-      shell: bash
       
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -37,5 +30,5 @@ jobs:
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
     
     - name: Publish Nuget
-      run: dotnet nuget push "LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg" --source "github" --skip-duplicate
+      run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg --source "github" --skip-duplicate
       shell: bash
