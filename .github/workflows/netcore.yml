@@ -20,9 +20,6 @@ jobs:
       run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release -p:Version=$(date +%Y.%m.%d%H.%M%S)
       shell: bash
     
-    - name: Pack
-      run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release
-    
     - name: Install NuGet client
       uses: warrenbuckley/Setup-Nuget@v1
     
