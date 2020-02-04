@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v1
     
     - name: Varibles
-      run: echo "Version is > $(VERSION)"
+      run: echo "Version is > $VERSION"
       shell: bash
       
     - name: Setup .NET Core
