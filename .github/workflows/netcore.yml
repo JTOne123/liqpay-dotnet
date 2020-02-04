@@ -19,6 +19,6 @@ jobs:
     - name: Pack
       run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release
     - name: Add private GitHub registry to NuGet
-      run: nuget sources add -name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -Username jtone123 -Password ${{secrets.GITHUB_TOKEN}}
+      run: dotnet nuget sources add -name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -Username jtone123 -Password ${{secrets.GITHUB_TOKEN}}
     - name: Publish Nuget
       run: dotnet nuget push "bin/Release/liqpay-dotnet.1.0.0.nupkg" --source "github"
