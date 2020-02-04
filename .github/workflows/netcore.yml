@@ -13,8 +13,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
+    - name: Define variables
+      run: echo "Version is > ${VERSION}"
+      env:
+        VERSION: $(date +%Y%m%d%H%M%S)
     - name: Build with dotnet
-      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release --version-suffix $(date +%Y%m%d%H%M%S)
+      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release /property:Version=${VERSION}
       shell: bash
     - name: Pack
       run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release
@@ -23,4 +27,4 @@ jobs:
     - name: Add private GitHub registry
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
     - name: Publish Nuget
-      run: dotnet nuget push "LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg" --source "github"
+      run: dotnet nuget push "LiqPaySDK/LiqPay.SDK/bin/Release/LiqPay.${VERSION}.nupkg" --source "github"
