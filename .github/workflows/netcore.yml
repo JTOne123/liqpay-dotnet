@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
     
     env: 
-      VERSION: $(date +%Y.%m.%d%H.%M%S)
+      VERSION: (get-date).ToString("yyyy.MM.ddHH.mmss")
     
     steps:
     
@@ -24,7 +24,7 @@ jobs:
         dotnet-version: 2.2.108
     
     - name: Build with dotnet
-      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release -p:Version=$(date +%Y.%m.%d%H.%M%S)
+      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release -p:Version=$VERSION
       shell: bash
     
     - name: Pack
