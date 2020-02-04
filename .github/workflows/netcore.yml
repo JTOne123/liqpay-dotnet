@@ -13,9 +13,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Setup GitHub Token
-      run: dotnet nuget setApiKey ${{ secrets.GITHUB_TOKEN }} --source "github"
+        repo-token: ${{secrets.GITHUB_TOKEN}}
+        nuget-api-key: ${{secrets.GITHUB_TOKEN}}
     - name: Build with dotnet
       run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release
     - name: Pack
