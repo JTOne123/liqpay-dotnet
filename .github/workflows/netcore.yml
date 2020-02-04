@@ -22,4 +22,4 @@ jobs:
     - name: Add private GitHub registry
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
     - name: Publish Nuget
-      run: dotnet nuget push "bin/Release/liqpay-dotnet.1.0.0.nupkg" -Source "github" -SkipDuplicate
+      run: dotnet nuget push "bin/Release/liqpay-dotnet.1.0.0.nupkg" --source "github" --skipDuplicate
