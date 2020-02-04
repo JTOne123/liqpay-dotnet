@@ -18,8 +18,11 @@ jobs:
       run: echo "Version is > $VERSION"
       env:
         VERSION: "1.0.5"
+    - name: Version again
+      run: echo "Version is > $VERSION"
+      shell: bash
     - name: Build with dotnet
-      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release /property:Version=$VERSION
+      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release /p:AssemblyVersion=$VERSION
       shell: bash
     - name: Pack
       run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release
@@ -29,3 +32,4 @@ jobs:
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
     - name: Publish Nuget
       run: dotnet nuget push "LiqPaySDK/LiqPay.SDK/bin/Release/LiqPay.$VERSION.nupkg" --source "github"
+      shell: bash
