@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
     
     env: 
-      VERSION: ${{ (get-date).ToString("yyyy.MM.ddHH.mmss") }}
+      VERSION: ${{ $(date +%Y.%m.%d%H.%M%S) }}
     
     steps:
     
