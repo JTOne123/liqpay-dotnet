@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v1
@@ -17,7 +17,7 @@ jobs:
       run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release
     - name: Pack
       run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release
-    #- name: Add private GitHub registry
-    #  run: dotnet nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
-    #- name: Publish Nuget
-    #  run: dotnet nuget push "bin/Release/liqpay-dotnet.1.0.0.nupkg" --source "github"
+    - name: Add private GitHub registry
+      run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
+    - name: Publish Nuget
+      run: dotnet nuget push "bin/Release/liqpay-dotnet.1.0.0.nupkg" --source "github"
