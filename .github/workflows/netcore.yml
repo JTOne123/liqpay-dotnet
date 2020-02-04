@@ -14,7 +14,8 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: Build with dotnet
-      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release
+      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release --version-suffix $(date +%Y%m%d%H%M%S)
+      shell: bash
     - name: Pack
       run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release
     - name: Install NuGet client
@@ -22,4 +23,4 @@ jobs:
     - name: Add private GitHub registry
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
     - name: Publish Nuget
-      run: dotnet nuget push "LiqPaySDK/LiqPay.SDK/bin/Release/LiqPay.1.0.4.nupkg" --source "github"
+      run: dotnet nuget push "LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg" --source "github"
