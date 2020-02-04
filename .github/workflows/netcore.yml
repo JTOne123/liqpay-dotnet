@@ -15,8 +15,8 @@ jobs:
         dotnet-version: 2.2.108
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Build with dotnet
-      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release
+      run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release --source "nuget.org"
     - name: Pack
-      run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release
+      run: dotnet pack LiqPaySDK/LiqPay.SDK.sln --configuration Release --source "nuget.org"
     - name: Publish Nuget
       run: dotnet nuget push "bin/Release/liqpay-dotnet.1.0.0.nupkg" --source "github"
