@@ -15,7 +15,7 @@ jobs:
         dotnet-version: 2.2.108
     - name: Define variables
       shell: bash
-      run: VERSION = "1.0.5"
+      run: $VERSION = "1.0.5"
     - name: Show varibles
       run: echo "Version is > $VERSION"
       shell: bash
