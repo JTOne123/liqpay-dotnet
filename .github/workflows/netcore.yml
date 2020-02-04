@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
     
     env: 
-      VERSION: (get-date).ToString("yyyy.MM.ddHH.mmss")
+      VERSION: $(get-date).ToString("yyyy.MM.ddHH.mmss")
     
     steps:
     
