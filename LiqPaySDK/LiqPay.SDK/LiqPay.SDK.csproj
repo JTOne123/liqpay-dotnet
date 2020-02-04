@@ -14,7 +14,6 @@
     <Product>LiqPay SDK</Product>
     <Description>Non-official C# wrapper for LiqPay API (based on Java implementation)</Description>
     <PackageIconUrl>https://www.liqpay.ua/favicon.ico</PackageIconUrl>
-    <Version>1.0.4</Version>
     <PackageId>LiqPay</PackageId>
     <Copyright>https://github.com/JTOne123/liqpay-dotnet/blob/master/LICENSE</Copyright>
   </PropertyGroup>
