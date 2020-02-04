@@ -13,11 +13,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
-    - name: Set NuGet creds
-      shell: pwsh
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: ./Set-NuGetCredentials -ConfigFile ./nuget.config -Source github -Username jtone123 -Password $env:GITHUB_TOKEN
     - name: Build with dotnet
       run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release
     - name: Pack
