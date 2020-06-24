@@ -32,3 +32,7 @@ jobs:
     - name: Publish Nuget
       run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg --source "github" --skip-duplicate
       shell: bash
+
+    - name: Publish SourceLink SNuget
+      run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.snupkg --source "github" --skip-duplicate
+      shell: bash
