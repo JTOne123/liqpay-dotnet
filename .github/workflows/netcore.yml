@@ -9,12 +9,12 @@ jobs:
     
     steps:
     
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
       
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 2.2.108
+        dotnet-version: 6.x.x
     
     - name: Build with dotnet
       run: dotnet build LiqPaySDK/LiqPay.SDK.sln --configuration Release -p:Version=$(date +%Y.%m.%d%H.%M%S)
@@ -24,7 +24,7 @@ jobs:
       run: dotnet test LiqPaySDK/LiqPay.SDK.Tests/LiqPay.SDK.Tests.csproj
     
     - name: Install NuGet client
-      uses: warrenbuckley/Setup-Nuget@v1
+      uses: nuget/setup-nuget@v1
     
     - name: Add private GitHub registry
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
