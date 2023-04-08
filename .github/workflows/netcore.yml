@@ -27,7 +27,7 @@ jobs:
       uses: nuget/setup-nuget@v1
     
     - name: Add private GitHub registry
-      run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.NUGETSECRET}}
+      run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{NUGETSECRET}}
     
     - name: Publish Nuget
       run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg --source "github" --skip-duplicate
