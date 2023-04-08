@@ -7,7 +7,6 @@
     <Authors>Pavlo Datsiuk</Authors>
     <Company>Printslon.com</Company>
     <PackageProjectUrl>https://github.com/JTOne123/liqpay-dotnet</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/JTOne123/liqpay-dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>liqpay, pay, payment, masterpass, bank card, privat24, privatbank</PackageTags>
     <RepositoryUrl>https://github.com/JTOne123/liqpay-dotnet</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
