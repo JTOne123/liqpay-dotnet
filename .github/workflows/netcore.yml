@@ -30,9 +30,9 @@ jobs:
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.NUGETSECRET}}
     
     - name: Publish Nuget
-      run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg --source "github" --api-key 0 --skip-duplicate
+      run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg --source "github" --api-key ${{secrets.NUGETSECRET}} --skip-duplicate
       shell: bash
 
     - name: Publish SourceLink SNuget
-      run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.snupkg --source "github" --api-key 0 --skip-duplicate
+      run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.snupkg --source "github" --api-key ${{secrets.NUGETSECRET}} --skip-duplicate
       shell: bash
