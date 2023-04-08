@@ -29,10 +29,18 @@ jobs:
     - name: Add private GitHub registry
       run: nuget source Add -Name "github" -Source https://nuget.pkg.github.com/jtone123/index.json -UserName jtone123 -Password ${{secrets.GITHUB_TOKEN}}
     
-    - name: Publish Nuget
+    - name: Publish Nuget to GitHub registry
       run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg --source "github" --api-key ${{secrets.GITHUB_TOKEN}} --skip-duplicate
       shell: bash
 
-    - name: Publish SourceLink SNuget
+    - name: Publish SourceLink SNuget to GitHub registry
       run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.snupkg --source "github" --api-key ${{secrets.GITHUB_TOKEN}} --skip-duplicate
+      shell: bash
+
+    - name: Publish Nuget to Nuget.org
+      run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.nupkg --api-key ${{secrets.NUGETSECRET}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      shell: bash
+
+    - name: Publish SourceLink SNuget to Nuget.org
+      run: dotnet nuget push LiqPaySDK/LiqPay.SDK/bin/Release/*.snupkg --api-key ${{secrets.NUGETSECRET}} --source https://api.nuget.org/v3/index.json --skip-duplicate
       shell: bash
