@@ -19,6 +19,8 @@ namespace LiqPay.SDK.Dto.Enums
         [EnumMember(Value = "regular")]
         Regular,
         [EnumMember(Value = "paycash")]
-        Paycash
+        Paycash,
+        [EnumMember(Value = "unsubscribe")]
+        Unsubscribe,
     }
 }
