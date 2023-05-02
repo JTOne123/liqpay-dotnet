@@ -32,5 +32,7 @@ namespace LiqPay.SDK.Dto.Enums
         Status,
         [EnumMember(Value = "unsubscribe")]
         Unsubscribe,
+        [EnumMember(Value = "ticket")]
+        Ticket,
     }
 }

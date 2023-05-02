@@ -22,5 +22,7 @@ namespace LiqPay.SDK.Dto.Enums
         Paycash,
         [EnumMember(Value = "unsubscribe")]
         Unsubscribe,
+        [EnumMember(Value = "ticket")]
+        Ticket,
     }
 }
