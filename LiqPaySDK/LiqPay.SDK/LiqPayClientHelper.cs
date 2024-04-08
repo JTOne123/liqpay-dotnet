@@ -30,7 +30,7 @@ namespace LiqPay.SDK
             {
                 var encoding = Encoding.GetEncoding(Encoding.UTF8.CodePage);
 
-				string urlParameters = string.Join("&", parameters);
+				var urlParameters = string.Join("&", parameters);
                 var stringContent = new StringContent(urlParameters);
 
 				using (var responseMessage = await httpClient.PostAsync(url, stringContent).ConfigureAwait(false))
