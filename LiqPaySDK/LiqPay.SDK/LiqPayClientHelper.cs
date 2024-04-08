@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LiqPay.SDK
 {
-	public class LiqPayClientHelper
+    public class LiqPayClientHelper
     {
         public static async Task<string> PostAsync(string url, Dictionary<string, string> data, WebProxy proxy = null)
         {
