@@ -29,9 +29,11 @@ namespace LiqPay.SDK
             using (var httpClient = new HttpClient(httpClientHandler))
             {
                 var encoding = Encoding.GetEncoding(Encoding.UTF8.CodePage);
-				string urlParameters = string.Join("&", parameters);
 
-				using (var responseMessage = await httpClient.PostAsync(url, new StringContent(urlParameters)).ConfigureAwait(false))
+				string urlParameters = string.Join("&", parameters);
+                var stringContent = new StringContent(urlParameters);
+
+				using (var responseMessage = await httpClient.PostAsync(url, stringContent).ConfigureAwait(false))
                 {
                     responseMessage.EnsureSuccessStatusCode();
 
