@@ -41,10 +41,14 @@ namespace LiqPay.SDK
         private void CheckRequired()
         {
             if (string.IsNullOrEmpty(_publicKey))
+            {
                 throw new ArgumentNullException("publicKey is empty");
+            }
 
-            if (string.IsNullOrEmpty(_publicKey))
+            if (string.IsNullOrEmpty(_privateKey))
+            {
                 throw new ArgumentNullException("privateKey is empty");
+            }
         }
 
         public async Task<LiqPayResponse> RequestAsync(string path, LiqPayRequest requestParams)
