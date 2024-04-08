@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -8,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace LiqPay.SDK
 {
-    public class LiqPayClientHelper
+	public class LiqPayClientHelper
     {
         public static async Task<string> PostAsync(string url, Dictionary<string, string> data, WebProxy proxy = null)
         {
-            string urlParameters = null;
             var parameters = new List<string>();
             foreach (var item in data)
             {
@@ -22,7 +20,7 @@ namespace LiqPay.SDK
                 
                 parameters.Add($"{item.Key}={utf8QueryValue}");
             }
-            urlParameters = string.Join("&", parameters);
+
             var httpClientHandler = new HttpClientHandler()
             {
                 Proxy = proxy
@@ -31,13 +29,17 @@ namespace LiqPay.SDK
             using (var httpClient = new HttpClient(httpClientHandler))
             {
                 var encoding = Encoding.GetEncoding(Encoding.UTF8.CodePage);
-                using (var responseMessage = await httpClient.PostAsync(url, new StringContent(urlParameters)))
+				string urlParameters = string.Join("&", parameters);
+
+				using (var responseMessage = await httpClient.PostAsync(url, new StringContent(urlParameters)).ConfigureAwait(false))
                 {
                     responseMessage.EnsureSuccessStatusCode();
 
                     using (var responseStream = await responseMessage.Content.ReadAsStreamAsync())
                     using (var reader = new StreamReader(responseStream, encoding))
-                        return reader.ReadToEnd();
+                    {
+						return reader.ReadToEnd();
+					}
                 }
             }
         }
