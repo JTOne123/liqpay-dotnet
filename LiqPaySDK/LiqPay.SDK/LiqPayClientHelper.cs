@@ -37,7 +37,7 @@ namespace LiqPay.SDK
                 {
                     responseMessage.EnsureSuccessStatusCode();
 
-                    using (var responseStream = await responseMessage.Content.ReadAsStreamAsync())
+                    using (var responseStream = await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false))
                     using (var reader = new StreamReader(responseStream, encoding))
                     {
 						return reader.ReadToEnd();
