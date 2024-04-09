@@ -54,7 +54,10 @@ namespace LiqPay.SDK
         public async Task<LiqPayResponse> RequestAsync(string path, LiqPayRequest requestParams)
         {
             var data = PrepareRequestData(requestParams);
-            string response = await LiqPayClientHelper.PostAsync(LiqPayConsts.LiqpayApiUrl + path, data, Proxy);
+
+			string response = await LiqPayClientHelper
+                .PostAsync($"{LiqPayConsts.LiqpayApiUrl}{path}", data, Proxy)
+                .ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<LiqPayResponse>(response);
         }
